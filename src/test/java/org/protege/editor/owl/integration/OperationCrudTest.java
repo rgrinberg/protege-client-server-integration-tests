@@ -74,8 +74,9 @@ public class OperationCrudTest extends BaseTest {
         assertThat(initialConfiguration.containsOperation(operationId), is(false));
         
         // Perform the action
-        admin.createOperation(killProcessOperation);
-        admin.reallyPutConfig(); // upload changes to server
+
+        admin.getConfig().createOperation(killProcessOperation);
+        admin.saveConfig(); // upload changes to server
         
         // Assert after the addition
         ServerConfiguration configAfterAddition = admin.getCurrentConfig();
@@ -96,8 +97,9 @@ public class OperationCrudTest extends BaseTest {
         assertThat(initialConfiguration.getOperation(operationId), is(not(nullValue())));
         
         // Perform the deletion
-        admin.deleteOperation(operationId);
-        admin.reallyPutConfig(); // upload changes to server
+
+        admin.getConfig().deleteOperation(operationId);
+        admin.saveConfig();
         
         // Assert after the deletion
         ServerConfiguration configAfterDeletion = admin.getCurrentConfig();
@@ -126,11 +128,11 @@ public class OperationCrudTest extends BaseTest {
         assertThat(openProjectOperation.getScope(), is(Scope.POLICY));
         
         // Perform the action
-        Operation updatedOp = TestUtils.createOperation("open-project",
-                "Open existing ontology", "Open an existing ontology from remote server",
-                OperationType.EXECUTE, Scope.ONTOLOGY);
-        admin.updateOperation(operationId, updatedOp);
-        admin.reallyPutConfig(); // upload changes to server
+
+        Operation updatedOp = TestUtils.createOperation("open-project", "Open ontology",
+                "Open an ontology from remote server", openProjectOperation.getType(), openProjectOperation.getScope());
+        admin.getConfig().updateOperation(operationId, updatedOp);
+        admin.saveConfig(); // upload changes to server
         
         // Assert after the update
         ServerConfiguration configAfterUpdating = admin.getCurrentConfig();

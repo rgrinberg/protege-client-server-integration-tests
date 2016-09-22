@@ -96,8 +96,8 @@ public class CommitChangesTest extends ProjectBaseTest {
     private void createNewUserJohn() throws Exception {
         User user = TestUtils.createUser("john", "John Doe", "john.doe@email.com");
         Password password = TestUtils.createPassword("johnpwd");
-        admin.createUser(user, Optional.of(password));
-        admin.reallyPutConfig();
+        admin.getConfig().createUser(user, Optional.of(password));
+        admin.saveConfig();
     }
 
     @After

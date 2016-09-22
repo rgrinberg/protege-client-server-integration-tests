@@ -49,23 +49,23 @@ public class AdminUserTest extends BaseTest {
         LocalHttpClient admin = connectAsAdmin();
         
         // Assert allowed operations
-        assertThat(admin.canAssignRole(), is(true));
-        assertThat(admin.canCreateOperation(), is(true));
-        assertThat(admin.canCreateProject(), is(true));
-        assertThat(admin.canCreateRole(), is(true));
-        assertThat(admin.canCreateUser(), is(true));
-        assertThat(admin.canDeleteOperation(), is(true));
-        assertThat(admin.canDeleteProject(), is(true));
-        assertThat(admin.canDeleteRole(), is(true));
-        assertThat(admin.canDeleteUser(), is(true));
-        assertThat(admin.canOpenProject(), is(true));
-        assertThat(admin.canRetractRole(), is(true));
-        assertThat(admin.canStopServer(), is(true));
-        assertThat(admin.canUpdateOperation(), is(true));
-        assertThat(admin.canUpdateProject(), is(true));
-        assertThat(admin.canUpdateRole(), is(true));
-        assertThat(admin.canUpdateServerConfig(), is(true));
-        assertThat(admin.canUpdateUser(), is(true));
+        assertThat(admin.getConfig().canAssignRole(), is(true));
+        assertThat(admin.getConfig().canCreateOperation(), is(true));
+        assertThat(admin.getConfig().canCreateProject(), is(true));
+        assertThat(admin.getConfig().canCreateRole(), is(true));
+        assertThat(admin.getConfig().canCreateUser(), is(true));
+        assertThat(admin.getConfig().canDeleteOperation(), is(true));
+        assertThat(admin.getConfig().canDeleteProject(), is(true));
+        assertThat(admin.getConfig().canDeleteRole(), is(true));
+        assertThat(admin.getConfig().canDeleteUser(), is(true));
+        assertThat(admin.getConfig().canOpenProject(), is(true));
+        assertThat(admin.getConfig().canRetractRole(), is(true));
+        assertThat(admin.getConfig().canStopServer(), is(true));
+        assertThat(admin.getConfig().canUpdateOperation(), is(true));
+        assertThat(admin.getConfig().canUpdateProject(), is(true));
+        assertThat(admin.getConfig().canUpdateRole(), is(true));
+        assertThat(admin.getConfig().canUpdateServerConfig(), is(true));
+        assertThat(admin.getConfig().canUpdateUser(), is(true));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class AdminUserTest extends BaseTest {
         LocalHttpClient admin = connectAsAdmin();
         
         // Perform the action
-        List<User> users = admin.getAllUsers();
+        List<User> users = admin.getConfig().getAllUsers();
         
         // Assert user list
         assertThat(users, is(not(nullValue())));
@@ -84,7 +84,7 @@ public class AdminUserTest extends BaseTest {
         LocalHttpClient admin = connectAsAdmin();
         
         // Perform the action
-        List<Project> projects = admin.getAllProjects();
+        List<Project> projects = admin.getConfig().getAllProjects();
         
         // Assert user list
         assertThat(projects, is(not(nullValue())));
@@ -95,7 +95,7 @@ public class AdminUserTest extends BaseTest {
         LocalHttpClient admin = connectAsAdmin();
         
         // Perform the action
-        List<Role> roles = admin.getAllRoles();
+        List<Role> roles = admin.getConfig().getAllRoles();
         
         // Assert user list
         assertThat(roles, is(not(nullValue())));
@@ -106,7 +106,7 @@ public class AdminUserTest extends BaseTest {
         LocalHttpClient admin = connectAsAdmin();
         
         // Perform the action
-        List<Operation> operations = admin.getAllOperations();
+        List<Operation> operations = admin.getConfig().getAllOperations();
         
         // Assert user list
         assertThat(operations, is(not(nullValue())));

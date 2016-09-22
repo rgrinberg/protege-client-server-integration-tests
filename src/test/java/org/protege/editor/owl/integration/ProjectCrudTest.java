@@ -115,8 +115,8 @@ public class ProjectCrudTest extends ProjectBaseTest {
                 pizzaProject.getFile(), // can't be replaced
                 "admin",
                 Optional.of(anotherProjectOptions));
-        admin.updateProject(projectId, updatedProject);
-        admin.reallyPutConfig(); // upload changes to server
+        admin.getConfig().updateProject(projectId, updatedProject);
+        admin.saveConfig(); // upload changes to server
         
         // Assert the update
         ServerConfiguration configAfterUpdating = admin.getCurrentConfig();
@@ -143,7 +143,7 @@ public class ProjectCrudTest extends ProjectBaseTest {
         
         // Perform the action
         admin.deleteProject(projectId, true);
-        admin.reallyPutConfig();
+        admin.saveConfig();
         
         // Assert after the deleteion
         ServerConfiguration configAfterDeletion = admin.getCurrentConfig();

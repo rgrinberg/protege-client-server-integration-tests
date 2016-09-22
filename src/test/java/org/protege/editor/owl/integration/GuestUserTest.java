@@ -49,23 +49,23 @@ public class GuestUserTest extends BaseTest {
         LocalHttpClient guest = connectAsGuest();
         
         // Assert allowed operations
-        assertThat(guest.canAssignRole(), is(false));
-        assertThat(guest.canCreateOperation(), is(false));
-        assertThat(guest.canCreateProject(), is(false));
-        assertThat(guest.canCreateRole(), is(false));
-        assertThat(guest.canCreateUser(), is(false));
-        assertThat(guest.canDeleteOperation(), is(false));
-        assertThat(guest.canDeleteProject(), is(false));
-        assertThat(guest.canDeleteRole(), is(false));
-        assertThat(guest.canDeleteUser(), is(false));
-        assertThat(guest.canOpenProject(), is(true));
-        assertThat(guest.canRetractRole(), is(false));
-        assertThat(guest.canStopServer(), is(false));
-        assertThat(guest.canUpdateOperation(), is(false));
-        assertThat(guest.canUpdateProject(), is(false));
-        assertThat(guest.canUpdateRole(), is(false));
-        assertThat(guest.canUpdateServerConfig(), is(false));
-        assertThat(guest.canUpdateUser(), is(false));
+        assertThat(guest.getConfig().canAssignRole(), is(false));
+        assertThat(guest.getConfig().canCreateOperation(), is(false));
+        assertThat(guest.getConfig().canCreateProject(), is(false));
+        assertThat(guest.getConfig().canCreateRole(), is(false));
+        assertThat(guest.getConfig().canCreateUser(), is(false));
+        assertThat(guest.getConfig().canDeleteOperation(), is(false));
+        assertThat(guest.getConfig().canDeleteProject(), is(false));
+        assertThat(guest.getConfig().canDeleteRole(), is(false));
+        assertThat(guest.getConfig().canDeleteUser(), is(false));
+        assertThat(guest.getConfig().canOpenProject(), is(true));
+        assertThat(guest.getConfig().canRetractRole(), is(false));
+        assertThat(guest.getConfig().canStopServer(), is(false));
+        assertThat(guest.getConfig().canUpdateOperation(), is(false));
+        assertThat(guest.getConfig().canUpdateProject(), is(false));
+        assertThat(guest.getConfig().canUpdateRole(), is(false));
+        assertThat(guest.getConfig().canUpdateServerConfig(), is(false));
+        assertThat(guest.getConfig().canUpdateUser(), is(false));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class GuestUserTest extends BaseTest {
         LocalHttpClient guest = connectAsGuest();
         
         // Perform the action
-        List<User> users = guest.getAllUsers();
+        List<User> users = guest.getConfig().getAllUsers();
         
         // Assert user list
         assertThat(users, is(not(nullValue())));
@@ -84,7 +84,7 @@ public class GuestUserTest extends BaseTest {
         LocalHttpClient guest = connectAsGuest();
         
         // Perform the action
-        List<Project> projects = guest.getAllProjects();
+        List<Project> projects = guest.getConfig().getAllProjects();
         
         // Assert user list
         assertThat(projects, is(not(nullValue())));
@@ -95,7 +95,7 @@ public class GuestUserTest extends BaseTest {
         LocalHttpClient guest = connectAsGuest();
         
         // Perform the action
-        List<Role> roles = guest.getAllRoles();
+        List<Role> roles = guest.getConfig().getAllRoles();
         
         // Assert user list
         assertThat(roles, is(not(nullValue())));
@@ -106,7 +106,7 @@ public class GuestUserTest extends BaseTest {
         LocalHttpClient guest = connectAsGuest();
         
         // Perform the action
-        List<Operation> operations = guest.getAllOperations();
+        List<Operation> operations = guest.getConfig().getAllOperations();
         
         // Assert user list
         assertThat(operations, is(not(nullValue())));

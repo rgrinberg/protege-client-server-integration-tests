@@ -119,8 +119,10 @@ public class RoleCrudTest extends BaseTest {
         assertThat(initialConfiguration.containsRole(roleId), is(false));
         
         // Perform the action
-        admin.createRole(editorRole);
-        admin.reallyPutConfig(); // upload changes to server
+
+        admin.getConfig().createRole(editorRole);
+        admin.saveConfig(); // upload changes to server
+
         
         // Assert after the addition
         ServerConfiguration configAfterAddition = admin.getCurrentConfig();
@@ -144,8 +146,8 @@ public class RoleCrudTest extends BaseTest {
         assertThat(initialConfiguration.getRole(roleId), is(not(nullValue())));
         
         // Perform the action
-        admin.deleteRole(roleId);
-        admin.reallyPutConfig(); // upload changes to server
+        admin.getConfig().deleteRole(roleId);
+        admin.saveConfig(); // upload changes to server
         
         // Assert after the deletion
         ServerConfiguration configAfterDeletion = admin.getCurrentConfig();
@@ -191,14 +193,12 @@ public class RoleCrudTest extends BaseTest {
                 TestUtils.createOperationId("accept-change")));
         
         // Perform the action
-        Set<OperationId> operations = new HashSet<>();
-        operations.add(TestUtils.createOperationId("remove-axiom"));
-        operations.add(TestUtils.createOperationId("remove-ontology-annotation"));
-        operations.add(TestUtils.createOperationId("add-axiom"));
+
+        Set<OperationId> operations = projectManager.getOperations();
         Role updatedRole = TestUtils.createRole("project-manager", "PM", "A project manager", operations);
-        admin.updateRole(roleId, updatedRole);
-        admin.reallyPutConfig(); // upload changes to server
-        
+        admin.getConfig().updateRole(roleId, updatedRole);
+        admin.saveConfig(); // upload changes to server
+       
         // Assert after the update
         ServerConfiguration configAfterUpdating = admin.getCurrentConfig();
         Role updatedProjectManager = configAfterUpdating.getRole(roleId);

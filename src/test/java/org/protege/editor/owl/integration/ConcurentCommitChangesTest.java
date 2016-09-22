@@ -86,9 +86,9 @@ public class ConcurentCommitChangesTest extends ProjectBaseTest {
     private void createNewUserJohn() throws Exception {
         User user = TestUtils.createUser("john", "John Doe", "john.doe@email.com");
         Password password = TestUtils.createPassword("johnpwd");
-        admin.createUser(user, Optional.of(password));
-        admin.assignRole(user.getId(), projectId, ConfigurationUtils.getProjectManagerRole().getId());
-        admin.reallyPutConfig();
+        admin.getConfig().createUser(user, Optional.of(password));
+        admin.getConfig().assignRole(user.getId(), projectId, ConfigurationUtils.getProjectManagerRole().getId());
+        admin.saveConfig();
     }
 
     @After

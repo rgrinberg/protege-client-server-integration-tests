@@ -70,8 +70,8 @@ public class UserCrudTest extends BaseTest {
         assertThat(initialConfiguration.containsUser(userId), is(false));
         
         // Perform the action
-        admin.createUser(user, Optional.of(password));
-        admin.reallyPutConfig(); // upload changes to server
+        admin.getConfig().createUser(user, Optional.of(password));
+        admin.saveConfig(); // upload changes to server
         
         // Assert after the addition
         ServerConfiguration configAfterAddition = admin.getCurrentConfig();
@@ -90,8 +90,8 @@ public class UserCrudTest extends BaseTest {
         assertThat(initialConfiguration.containsUser(userId), is(false));
         
         // Perform the action
-        admin.createUser(user, Optional.empty());
-        admin.reallyPutConfig(); // upload changes to server
+        admin.getConfig().createUser(user, Optional.empty());
+        admin.saveConfig(); // upload changes to server
         
         // Assert after the addition
         ServerConfiguration configAfterAddition = admin.getCurrentConfig();
@@ -113,8 +113,10 @@ public class UserCrudTest extends BaseTest {
         
         // Perform the action
         User updatedUser = TestUtils.createUser("guest", "VIP Guest", "guest@email.com");
-        admin.updateUser(userId, updatedUser, Optional.empty());
-        admin.reallyPutConfig(); // upload changes to server
+        admin.getConfig().updateUser(userId, updatedUser, Optional.empty());
+
+        admin.saveConfig(); // upload changes to server
+
         
         // Assert after the update
         ServerConfiguration configAfterUpdating = admin.getCurrentConfig();
@@ -135,8 +137,9 @@ public class UserCrudTest extends BaseTest {
         assertThat(initialConfiguration.getAuthenticationDetails(userId), is(not(nullValue())));
         
         // Perform the action
-        admin.deleteUser(userId);
-        admin.reallyPutConfig(); // upload changes to server
+        admin.getConfig().deleteUser(userId);
+        admin.saveConfig(); // upload changes to server
+
         
         // Assert after the deletion
         ServerConfiguration configAfterDeletion = admin.getCurrentConfig();
