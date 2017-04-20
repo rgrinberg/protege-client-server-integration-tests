@@ -1,35 +1,25 @@
 package org.protege.editor.owl.integration;
 
-import java.io.File;
-import java.net.URISyntaxException;
-import java.util.UUID;
-
+import edu.stanford.protege.metaproject.ConfigurationManager;
+import edu.stanford.protege.metaproject.api.PlainPassword;
+import edu.stanford.protege.metaproject.api.PolicyFactory;
+import edu.stanford.protege.metaproject.api.UserId;
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.protege.editor.owl.client.LocalHttpClient;
-import org.protege.editor.owl.client.LocalRMIClient;
-import org.protege.editor.owl.client.api.Client;
-import org.protege.editor.owl.client.ui.DefaultUserAuthenticator;
-import org.protege.editor.owl.client.util.ServerUtils;
-import org.protege.editor.owl.model.OWLModelManager;
-import org.protege.editor.owl.model.OWLModelManagerImpl;
 import org.protege.editor.owl.model.history.HistoryManagerImpl;
 import org.protege.editor.owl.server.http.HTTPServer;
-import org.protege.editor.owl.server.transport.rmi.RemoteLoginService;
-import org.protege.editor.owl.server.transport.rmi.RmiLoginService;
 import org.protege.editor.owl.server.versioning.api.DocumentRevision;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLRuntimeException;
-import org.junit.AfterClass;
 
-import edu.stanford.protege.metaproject.Manager;
-import edu.stanford.protege.metaproject.api.AuthToken;
-import edu.stanford.protege.metaproject.api.MetaprojectFactory;
-import edu.stanford.protege.metaproject.api.PlainPassword;
-import edu.stanford.protege.metaproject.api.UserId;
+import java.io.File;
+import java.net.URISyntaxException;
+import java.util.UUID;
 
 public abstract class BaseTest {
 
@@ -42,7 +32,7 @@ public abstract class BaseTest {
     protected static final DocumentRevision R4 = DocumentRevision.create(4);
     protected static final DocumentRevision R5 = DocumentRevision.create(5);
 
-    protected static MetaprojectFactory f = Manager.getFactory();
+    protected static PolicyFactory f = ConfigurationManager.getFactory();
 
     protected OWLOntologyManager owlManager;
     
