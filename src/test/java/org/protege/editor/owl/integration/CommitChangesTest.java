@@ -41,6 +41,7 @@ public class CommitChangesTest extends BaseTest {
     private ProjectId projectId;
 
     private LocalHttpClient guest;
+    private LocalHttpClient manager;
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -53,7 +54,7 @@ public class CommitChangesTest extends BaseTest {
         projectId = f.getProjectId("pizza-" + System.currentTimeMillis()); // currentTimeMilis() for uniqueness
         Name projectName = f.getName("Pizza Project");
         Description description = f.getDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit");
-        UserId owner = f.getUserId("root");
+        UserId owner = f.getUserId("bob");
         Optional<ProjectOptions> options = Optional.ofNullable(null);
         
         Project proj = f.getProject(projectId, projectName, description, owner, options);
@@ -61,9 +62,12 @@ public class CommitChangesTest extends BaseTest {
         getAdmin().createProject(proj, PizzaOntology.getResource());
     }
 
-    private VersionedOWLOntology openProjectAsAdmin() throws Exception {
-        ServerDocument serverDocument = getAdmin().openProject(projectId);
-        return getAdmin().buildVersionedOntology(serverDocument, owlManager, projectId);
+    private VersionedOWLOntology openProjectAsManager() throws Exception {
+    	UserId managerId = f.getUserId("bob");
+        PlainPassword managerPassword = f.getPlainPassword("bob");
+        this.manager = login(managerId, managerPassword);
+        ServerDocument serverDocument = manager.openProject(projectId);
+        return manager.buildVersionedOntology(serverDocument, owlManager, projectId);
     }
 
     private VersionedOWLOntology openProjectAsGuest() throws Exception {
@@ -76,7 +80,7 @@ public class CommitChangesTest extends BaseTest {
 
     @Test
     public void shouldCommitAddition() throws Exception {
-        VersionedOWLOntology vont = openProjectAsAdmin();
+        VersionedOWLOntology vont = openProjectAsManager();
         OWLOntology workingOntology = vont.getOntology();
         
         /*
@@ -133,7 +137,7 @@ public class CommitChangesTest extends BaseTest {
 
     @Test
     public void shouldCommitDeletion() throws Exception {
-        VersionedOWLOntology vont = openProjectAsAdmin();
+        VersionedOWLOntology vont = openProjectAsManager();
         OWLOntology workingOntology = vont.getOntology();
         
         /*
