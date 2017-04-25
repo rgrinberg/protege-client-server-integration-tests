@@ -80,7 +80,7 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
-                	<argline>-Dorg.protege.owl.server.configuration=server-configuration.json</argline>
+                	<argLine>-Dorg.protege.owl.server.configuration=server-configuration.json</argLine>
                     <encoding>UTF-8</encoding>
                 </configuration>
                 <executions>
