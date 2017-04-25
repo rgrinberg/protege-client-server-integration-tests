@@ -107,7 +107,7 @@ public class CommitChangesTest extends BaseTest {
         /*
          * Do commit
          */
-        ChangeHistory approvedChanges = getAdmin().commit(projectId, commitBundle);
+        ChangeHistory approvedChanges = manager.commit(projectId, commitBundle);
         
         /*
          * Update local history
@@ -124,7 +124,7 @@ public class CommitChangesTest extends BaseTest {
         assertThat(changeHistoryFromClient.getRevisions().size(), is(1));
         assertThat(changeHistoryFromClient.getChangesForRevision(R1).size(), is(2));
         
-        ChangeHistory changeHistoryFromServer = ((LocalHttpClient)getAdmin()).getAllChanges(vont.getServerDocument());
+        ChangeHistory changeHistoryFromServer = ((LocalHttpClient) manager).getAllChanges(vont.getServerDocument());
         
         // Assert the remote change history
         assertThat("The remote change history should not be empty", !changeHistoryFromServer.isEmpty());
@@ -181,7 +181,7 @@ public class CommitChangesTest extends BaseTest {
         /*
          * Do commit
          */
-        ChangeHistory approvedChanges = getAdmin().commit(projectId, commitBundle);
+        ChangeHistory approvedChanges = manager.commit(projectId, commitBundle);
         
         /*
          * Update local history
@@ -198,7 +198,7 @@ public class CommitChangesTest extends BaseTest {
         assertThat(changeHistoryFromClient.getRevisions().size(), is(1));
         assertThat(changeHistoryFromClient.getChangesForRevision(R1).size(), is(16));
         
-        ChangeHistory changeHistoryFromServer = ((LocalHttpClient)getAdmin()).getAllChanges(vont.getServerDocument());
+        ChangeHistory changeHistoryFromServer = ((LocalHttpClient) manager).getAllChanges(vont.getServerDocument());
         
         // Assert the remote change history
         assertThat("The remote change history should not be empty", !changeHistoryFromServer.isEmpty());

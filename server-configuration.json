@@ -20,7 +20,8 @@
         "mp-project-manager"
       ],
       "all-projects": [
-        "mp-admin"
+        "mp-admin",
+        "mp-project-manager"
       ],
       "d4d86431-35cd-4b13-8c6f-b169cc6685c7": [
         "mp-project-manager"
@@ -69,7 +70,43 @@
   ],
   "projects": [
     {
+      "id": "pizza-1493117263515",
+      "name": "Pizza Project",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "owner": "bob"
+    },
+    {
+      "id": "pizza-1493116815789",
+      "name": "Pizza Project",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "owner": "bob"
+    },
+    {
+      "id": "pizza-1493043625251",
+      "name": "Pizza Project",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "owner": "bob"
+    },
+    {
+      "id": "pizza-1493116340029",
+      "name": "Pizza Project",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "owner": "bob"
+    },
+    {
       "id": "pizza-1493043513811",
+      "name": "Pizza Project",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "owner": "bob"
+    },
+    {
+      "id": "pizza-1493116698071",
+      "name": "Pizza Project",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "owner": "bob"
+    },
+    {
+      "id": "pizza-1493117126617",
       "name": "Pizza Project",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       "owner": "bob"
@@ -82,12 +119,6 @@
     },
     {
       "id": "pizza-1493043801075",
-      "name": "Pizza Project",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      "owner": "bob"
-    },
-    {
-      "id": "pizza-1493043625251",
       "name": "Pizza Project",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       "owner": "bob"
